@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+/*
+  MsafiPOS brand tokens.
+  Direction: a till, not a dashboard. POS software lives on a shop counter,
+  often under fluorescent light and touched with a finger, not a mouse —
+  so the palette leans toward high-contrast "receipt paper + ink" rather
+  than the generic violet-gradient SaaS look. The accent (amber) reads as
+  "cash / register key", not "generic brand blue".
+*/
+@theme {
+  --color-ink-950: #12110f;
+  --color-ink-900: #1c1a17;
+  --color-ink-800: #2b2822;
+  --color-ink-700: #3d392f;
+  --color-paper-50: #fbf9f4;
+  --color-paper-100: #f4f0e6;
+  --color-paper-200: #e8e1d0;
+  --color-till-500: #d98c1f;
+  --color-till-600: #b8720f;
+  --color-till-400: #f0a93f;
+  --color-mint-500: #2f9e6e;
+  --color-rose-500: #c0483f;
+
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background: var(--color-paper-50);
+  font-family: var(--font-body);
+  color: var(--color-ink-900);
+}
+
+.input {
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.5rem;
+  background: var(--color-paper-100);
+  border: 1px solid var(--color-paper-200);
+  font-size: 0.875rem;
+  color: var(--color-ink-900);
+}
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-till-500) 40%, transparent);
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--color-paper-200); border-radius: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+@media print {
+  body * { visibility: hidden; }
+  #receipt-print, #receipt-print * { visibility: visible; }
+  #receipt-print { position: fixed; top: 0; left: 0; width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
